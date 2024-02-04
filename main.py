@@ -3,16 +3,16 @@ turing_machine = {}
 delta = []
 words = []
 instructions = []
-alphabet = {1, 0, 'x', '#', 'b'}
+alphabet = {'1', '0', 'x', '#', 'b'}
 moviments = ['D', 'E', 'P']
 head = ""
 checking = True
 cont = 0  # auxiliary counter
 
 # states
-initial = int(input(""))
-accepted = int(input(""))
-rejected = int(input(""))
+initial = input("")
+accepted = input("")
+rejected = input("")
 words_number = int(input(""))
 current = initial
 
@@ -24,44 +24,37 @@ for i in range(0, words_number):
 # filling the list delta with instructions
 num_instructions = int(input(''))
 for i in range(0, num_instructions):
-    x = int(input(''))
+    x = input('')
     instructions.append(x)
-    y = int(input(''))
+    y = input('')
     instructions.append(y)
     u = input('').lower()
-    if u.isdecimal():
-        int(u)
     instructions.append(u)
     v = input('').lower()
-    if v.isdecimal():
-        int(v)
     instructions.append(v)
     w = input('').upper()
     instructions.append(w)
     delta.append(tuple(instructions))
     instructions.clear()
 
-turing_machine = {'inicial': initial, 'aceita': accepted, 'rejeita': rejected, 'delta': delta}
+#turing_machine = {'inicial': initial, 'aceita': accepted, 'rejeita': rejected, 'delta': delta}
 
 for i in range(0, words_number):
     while checking:
         for j in range(0, len(words[i])):
-            int(words[i])
             while cont < len(delta):
                 if words[i][j] == delta[cont][2]:
                     head = delta[cont][4]
                     current = delta[cont][1]
-                    if delta[cont][3].isdecimal():
-                        words[i][j] = delta[cont][3]
-                    else:
-                        str(words[i][j])
-                        words[i][j] = delta[cont][3]
+                    print(words[i][j])
+                    #verificar por que nao aceita essa atribuição, provavelmente porque é uma manipulação muito interna nas strings
+                    words[i][j] = delta[cont][3]
                     if delta[cont][4] == 'P':
                         if current == accepted:
-                            print(f'{words[i]} ACEITA')
+                            print(f'{int(words[i])} ACEITA')
                             checking = False
                         elif current == rejected:
-                            print(f'{words[i]} REJEITA')
+                            print(f'{int(words[i])} REJEITA')
                             checking = False
                     elif head == 'D':
                         cont = cont + 1
